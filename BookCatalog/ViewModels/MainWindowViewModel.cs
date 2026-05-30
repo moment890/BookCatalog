@@ -34,18 +34,13 @@ namespace BookCatalog.ViewModels
             Categories.Clear();
             Genres.Clear();
 
-            Categories.Add(new Category() { Id = -1, Name = "Все", Books = Books });
 
-            foreach (var book in await db.books.ToListAsync())
-            {
-                Books.Add(book);
-            }
-
+          
         }
 
         private void ApplyFilters()
         {
-            IQueryable<Book> query = db.Books;
+            IQueryable<Book> query = db.books;
 
             if (!string.IsNullOrWhiteSpace(_searchText))
             {

@@ -10,7 +10,6 @@ namespace BookCatalog.Data
     public class BookContext : DbContext
     {
         public DbSet<Book> books { get; set; }
-        public IQueryable<Book> Books { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Genre> Genres { get; set; }
 
