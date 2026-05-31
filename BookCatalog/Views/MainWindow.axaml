@@ -13,4 +13,30 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
+    <StackPanel>
+        <StackPanel Margin="0 0 0 20" Orientation="Horizontal" Spacing="10">
+            <TextBox Watermark="Search..." Width="600" Text="{Binding SearchText}" />
+            <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}">
+                <ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+
+         <ListBox ItemsSource="{Binding Books }">
+		    <ListBox.ItemTemplate>
+			    <DataTemplate>
+				    <StackPanel>
+					    <TextBlock Text="{Binding Author}" />
+					    <TextBlock Text="{Binding CategoryId}" />
+                        <TextBlock Text="{Binding Genre}"/> 
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+
 </Window>
+

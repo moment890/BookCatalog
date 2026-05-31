@@ -19,10 +19,10 @@ namespace BookCatalog.ViewModels
         public ObservableCollection<Genre> Genres { get; } = new();
 
         [ObservableProperty]
-        private string _searchText;
+        private string searchText;
 
         [ObservableProperty]
-        private Category _selectedCategory;
+        private Category selectedCategory;
 
         public MainWindowViewModel()
         {
@@ -42,26 +42,26 @@ namespace BookCatalog.ViewModels
         {
             IQueryable<Book> query = db.books;
 
-            if (!string.IsNullOrWhiteSpace(_searchText))
+            if (!string.IsNullOrWhiteSpace(searchText))
             {
-                string lowerSearchText = _searchText.ToLower();
+                string lowerSearchText = searchText.ToLower();
                 query = query.Where(p => p.Title.ToLower().Contains(lowerSearchText));
 
-                if (_selectedCategory != null && _selectedCategory.Id != -1)
+                if (selectedCategory != null && selectedCategory.Id != -1)
                 {
 
 
-                    if (_selectedCategory != null && _selectedCategory.Id != -1)
+                    if (selectedCategory != null && selectedCategory.Id != -1)
                     {
-                        query = query.Where(p => p.Category.Id == _selectedCategory.Id);
+                        query = query.Where(p => p.Category.Id == selectedCategory.Id);
                     }
 
 
 
-                    if (_selectedCategory != null && _selectedCategory.Id != -1)
+                    if (selectedCategory != null && selectedCategory.Id != -1)
                     {
 
-                        query = query.Where(p => p.Category.Id == _selectedCategory.Id);
+                        query = query.Where(p => p.Category.Id == selectedCategory.Id);
                     }
 
                     Books.Clear();
