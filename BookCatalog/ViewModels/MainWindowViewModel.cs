@@ -1,11 +1,11 @@
 ﻿using BookCatalog.Data;
 using BookCatalog.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.Json;
-
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace BookCatalog.ViewModels
 
@@ -14,7 +14,7 @@ namespace BookCatalog.ViewModels
     {
         private readonly BookContext db = new();
 
-        public ObservableCollection<Book> Books { get; } = new();
+        private List<Book> _allBooks { get; } = new();
         public ObservableCollection<Category> Categories { get; } = new();
         public ObservableCollection<Genre> Genres { get; } = new();
 
@@ -30,12 +30,22 @@ namespace BookCatalog.ViewModels
         }
         private async void LoadData()
         {
-            Books.Clear();
+            _allBooks.Clear();
             Categories.Clear();
             Genres.Clear();
 
 
-          
+            Categories.Add(new Category() { Id = -1, Name = "Все", Books = _allBooks });
+
+        }
+
+        partial void OnSearchTextChanged(string value)
+        {
+            ApplyFilters();
+        }
+        partial void OnSelectedCategoryChanged(Category value)
+        {
+            ApplyFilters();
         }
 
         private void ApplyFilters()
@@ -64,11 +74,11 @@ namespace BookCatalog.ViewModels
                         query = query.Where(p => p.Category.Id == selectedCategory.Id);
                     }
 
-                    Books.Clear();
+                    _allBooks.Clear();
 
                     foreach (var item in query.ToList())
                     {
-                        Books.Add(item);
+                        _allBooks.Add(item);
                     }
 
                 }

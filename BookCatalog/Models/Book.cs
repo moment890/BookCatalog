@@ -30,6 +30,9 @@ namespace BookCatalog.Models
         public Category Category { get; set; }
         public Genre Genre { get; set; }
 
-
+        internal static void Add(Book books)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

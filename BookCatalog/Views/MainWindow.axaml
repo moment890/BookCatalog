@@ -14,7 +14,7 @@
     </Design.DataContext>
 
     <StackPanel>
-        <StackPanel Margin="0 0 0 20" Orientation="Horizontal" Spacing="10">
+        <StackPanel Margin="0 4 0 20" Orientation="Horizontal" Spacing="11">
             <TextBox Watermark="Search..." Width="600" Text="{Binding SearchText}" />
             <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}">
                 <ComboBox.ItemTemplate>
@@ -25,13 +25,34 @@
             </ComboBox>
         </StackPanel>
 
-         <ListBox ItemsSource="{Binding Books }">
+        <StackPanel Margin="690 -53 0 20" Orientation="Horizontal" Spacing="11">
+           <ComboBox ItemsSource="{Binding Genres}" SelectedItem="{Binding Genres}">
+                <ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+             <ListBox ItemsSource="{Binding Genres }">
 		    <ListBox.ItemTemplate>
 			    <DataTemplate>
 				    <StackPanel>
-					    <TextBlock Text="{Binding Author}" />
-					    <TextBlock Text="{Binding CategoryId}" />
-                        <TextBlock Text="{Binding Genre}"/> 
+					    <TextBlock Text="{Binding Id}" />
+					    <TextBlock Text="{Binding Name }" />
+                        <TextBlock Text="{Binding }"/> 
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        </StackPanel>
+
+         <ListBox ItemsSource="{Binding Categories }">
+		    <ListBox.ItemTemplate>
+			    <DataTemplate>
+				    <StackPanel>
+					    <TextBlock Text="{Binding Id}" />
+					    <TextBlock Text="{Binding Name }" />
+                        <TextBlock Text="{Binding Books}"/> 
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
